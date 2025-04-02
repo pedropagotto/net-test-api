@@ -9,18 +9,18 @@ Essa api será basicamente um cadastro e gestão de usuarios conforme descrito n
 
 ## Techs:
 
-.NET 9 Web Api
+.NET 8 Web Api
 SQL Server
 Docker e docker compose
 
 ### Packages:
-Ef core 9
+Ef core 8
 JWT
 Fluent Validator
-Scalar para documentação de api.
-Xunit
+Nunit
 NSubstitute
 AutoFixture
+Shouldly
 
 ## Como rodar o projeto:
 Clone o repositorio e na sequencia realize os comandos:
