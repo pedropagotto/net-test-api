@@ -39,3 +39,16 @@ dotnet run
 docker compose up -d
 ```
 
+## Compartilhando contexto de decisões do projeto:
+
+Porque foi utilizado .NET 8?
+
+R: Por ser uma versão LTS.
+
+Como foi estruturado o projeto quais arquiteturas foram baseadas?
+
+Por que foi escolhido postgresSQL?
+
+Por que foi determinado o uso do JWT ao invés de um provider de autenticação?
+
+
