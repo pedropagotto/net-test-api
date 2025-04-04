@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Authentication.Infrastructure.Repositories;
 
-public class UserRepository(DbContext context) : Repository<User>(context), IUserRepository
+public class UserRepository(AppDbContext context) : Repository<User>(context), IUserRepository
 {
 
 }

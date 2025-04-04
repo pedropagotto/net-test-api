@@ -87,8 +87,7 @@ public class Result : Result<object>
     {
         return new Result<TResult>(false).WithError(error);
     }
-
-
+    
     public static Result Error(List<ErrorMessage> errors)
     {
         return (Result) new Result(false).WithErrors(errors);

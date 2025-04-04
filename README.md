@@ -9,7 +9,7 @@ Essa api será basicamente um cadastro e gestão de usuarios conforme descrito n
 ## Techs:
 
 - .NET 8 Web Api
-- SQL Server
+- Postgres
 - Docker e docker compose
 
 ### Packages:

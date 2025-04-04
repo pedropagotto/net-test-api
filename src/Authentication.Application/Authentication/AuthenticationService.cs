@@ -1,11 +1,12 @@
 using Authentication.Application.Authentication.Login;
+using Authentication.Domain.Abstractions;
 
 namespace Authentication.Application.Authentication;
 
 public class AuthenticationService : IAuthenticationService
 {
-    public async Task<LoginQueryResult> Login(LoginQuery loginQuery)
+    public async Task<Result<LoginQueryResult>> Login(LoginQuery loginQuery)
     {
-        throw new NotImplementedException();
+        return Result.Ok<LoginQueryResult>(new LoginQueryResult("uahsdhuads"));
     }
 }

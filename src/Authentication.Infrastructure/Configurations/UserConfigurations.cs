@@ -19,7 +19,7 @@ public class UserConfigurations : IEntityTypeConfiguration<User>
 
         builder.HasOne(x => x.Authentication)
             .WithOne(a => a.User)
-            .HasForeignKey<Auth>(a => a.User.Id)
+            .HasForeignKey<Auth>(a => a.UserId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
 

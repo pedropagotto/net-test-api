@@ -36,13 +36,21 @@ public class User : BaseAudit, IAggregateRoot
 
     public string ValuesDescription { get; private set; }
 
-    public Auth Authentication { get; private set; }
+    public int AuthenticationId { get; private set; }
+    public virtual Auth Authentication { get; private set; }
 
     public User SetAuthentication(string email, string password)
     {
         Authentication = new Auth(new Email(email), password);
         return this;
     }
+    
+    public User SetAuthenticationId(int authenticationId)
+    {
+        AuthenticationId = authenticationId;
+        return this;
+    }
+
 
     public User SetName(string name)
     {

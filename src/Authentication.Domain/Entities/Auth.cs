@@ -17,6 +17,7 @@ public class Auth : BaseAudit
     public Email Email { get; private set; }
     public string Password { get; private set; }
 
+    public int UserId { get; set; }
     public virtual User User { get; private set; } = null!;
 
     public Auth SetEmail(string email)

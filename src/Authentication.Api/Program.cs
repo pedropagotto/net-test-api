@@ -5,17 +5,12 @@ using Authentication.Api.Configurations.Middlewares;
 using Authentication.Application;
 using Authentication.Domain.Models.Configurations;
 using Authentication.Infrastructure;
+using Authentication.Infrastructure.Extensions;
 
 
 var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
 
-var config = new ConfigurationBuilder()
-    .SetBasePath(Environment.CurrentDirectory)
-    .AddJsonFile("appsettings.json", false, true)
-    .AddJsonFile($"appsettings.{environmentName}.json", true, true)
-    .AddUserSecrets(Assembly.GetExecutingAssembly(), true)
-    .AddEnvironmentVariables()
-    .Build();
+var config = ConfigurationBuilderExtensions.GetConfigurations();
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;

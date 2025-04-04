@@ -12,12 +12,7 @@ public class AuthConfigurations : IEntityTypeConfiguration<Auth>
 
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
-        builder.HasIndex(x => x.User.Id).IsUnique();
-
-        builder.HasOne(a => a.User)
-            .WithOne(u => u.Authentication)
-            .HasForeignKey<Auth>(a => a.User.Id)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasIndex(x => x.UserId).IsUnique();
 
         builder.OwnsOne(x => x.Email, email =>
         {

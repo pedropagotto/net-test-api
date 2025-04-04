@@ -3,8 +3,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Authentication.Infrastructure.Data;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public class AppDbContext: DbContext
 {
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
 
     public DbSet<Auth> Authentications { get; set; } = null!;
     public DbSet<User> Users { get; set; } = null!;

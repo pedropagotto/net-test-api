@@ -10,8 +10,7 @@ public static class DatabaseConfigurationExtension
     {
         services.AddDbContext<AppDbContext>(x =>
         {
-            x.UseNpgsql(configuration.ConnectionString, b
-                => b.MigrationsAssembly("Authentication.Api"));
+            x.UseNpgsql(configuration.ConnectionString);
         });
     }
 }

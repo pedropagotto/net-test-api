@@ -1,8 +1,9 @@
 using Authentication.Application.Authentication.Login;
+using Authentication.Domain.Abstractions;
 
 namespace Authentication.Application.Authentication;
 
 public interface IAuthenticationService
 {
-    Task<LoginQueryResult> Login(LoginQuery loginQuery);
+    Task<Result<LoginQueryResult>> Login(LoginQuery loginQuery);
 }

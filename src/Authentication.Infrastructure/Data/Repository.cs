@@ -6,11 +6,11 @@ namespace Authentication.Infrastructure.Data;
 
 public abstract class Repository<T> : IRepository<T> where T : class
 {
-    private readonly DbContext _context;
+    private readonly AppDbContext _context;
     protected readonly DbSet<T> DbSet;
     protected readonly IQueryable<T> ContextReadonly;
 
-    public Repository(DbContext context)
+    public Repository(AppDbContext context)
     {
         _context = context;
         DbSet = context.Set<T>();
