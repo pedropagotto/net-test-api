@@ -15,7 +15,6 @@
 
     <ItemGroup>
       <Folder Include="Configurations\Filters\" />
-      <Folder Include="Configurations\Middlewares\" />
       <Folder Include="Controllers\" />
     </ItemGroup>
 

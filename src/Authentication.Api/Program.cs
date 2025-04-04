@@ -1,5 +1,6 @@
 using System.Reflection;
 using Authentication.Api.Configurations.Extensions;
+using Authentication.Api.Configurations.Middlewares;
 using Authentication.Application;
 using Authentication.Domain.Models.Configurations;
 using Authentication.Infrastructure;
@@ -44,6 +45,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.Run();
 #endregion
