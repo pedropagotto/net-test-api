@@ -1,6 +1,6 @@
 ## Objetivo:
 
-Teste técnico para a 4logic
+Teste técnico para forlogic
 
 ## Descrição:
 
