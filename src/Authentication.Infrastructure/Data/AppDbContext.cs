@@ -11,6 +11,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema("forlogic-api");
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(DependencyInjectionExtension).Assembly);
     }
 }

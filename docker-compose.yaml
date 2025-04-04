@@ -7,7 +7,7 @@
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: 4logic-test
+      POSTGRES_DB: test-forlogic-api
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
