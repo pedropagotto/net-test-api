@@ -3,9 +3,12 @@ using Authentication.Api.Configurations.Extensions;
 using Authentication.Api.Configurations.Filters;
 using Authentication.Api.Configurations.Middlewares;
 using Authentication.Application;
+using Authentication.Application.Authentication.Login;
 using Authentication.Domain.Models.Configurations;
 using Authentication.Infrastructure;
 using Authentication.Infrastructure.Extensions;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 
 var environmentName = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -17,9 +20,14 @@ var services = builder.Services;
 
 services.AddFiltersConfigurations();
 services.AddCorsConfiguration();
-services.AddControllers(opt => { opt.Filters.Add<ModelStateFilter>(); });
+
+services.AddControllers(opt =>
+{
+    opt.Filters.Add<ModelStateFilter>();
+});
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
+builder.Services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly()); 
 
 var configurations = config.GetSection("Configurations").Get<ConfigurationModel>();
 configurations!.ConnectionString = builder.Configuration.GetConnectionString("PostgresSQL")

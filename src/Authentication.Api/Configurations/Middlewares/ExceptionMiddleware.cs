@@ -27,7 +27,7 @@ public class ExceptionMiddleware
 
             var response = new
             {
-                errors = new List<ErrorMessage>
+                Errors = new List<ErrorMessage>
                 {
                     new(ex.Message)
                 }

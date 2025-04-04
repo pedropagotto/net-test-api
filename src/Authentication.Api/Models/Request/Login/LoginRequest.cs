@@ -1,4 +1,5 @@
 using Authentication.Application.Authentication.Login;
+using Authentication.Domain.Abstractions;
 
 namespace Authentication.Api.Models.Request.Login;
 
@@ -15,8 +16,8 @@ public class LoginRequest
     /// <example>saudhias@lsasokxc</example>
     public string Password { get; set; }
 
-    public LoginQuery ToQuery()
+    public Result<LoginQuery> ToQuery()
     {
-        return new LoginQuery(Email, Password);
+        return new LoginQuery(Email, Password).Validate();
     }
 }
