@@ -1,5 +1,6 @@
 using System.Reflection;
 using Authentication.Api.Configurations.Extensions;
+using Authentication.Api.Configurations.Filters;
 using Authentication.Api.Configurations.Middlewares;
 using Authentication.Application;
 using Authentication.Domain.Models.Configurations;
@@ -19,14 +20,16 @@ var config = new ConfigurationBuilder()
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
+services.AddFiltersConfigurations();
 services.AddCorsConfiguration();
-services.AddControllers();
+services.AddControllers(opt => { opt.Filters.Add<ModelStateFilter>(); });
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 var configurations = config.GetSection("Configurations").Get<ConfigurationModel>();
 configurations!.ConnectionString =  builder.Configuration.GetConnectionString("PostgresSQL")
                                   ?? throw new Exception("ConnectionString not found");
+
 services.AddJwtConfig(configurations);
 services.AddApiDi(configurations);
 services.AddInfrastructure();
@@ -39,13 +42,10 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.AddCustomCors();
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
 app.UseMiddleware<ExceptionMiddleware>();
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 
 app.Run();
 #endregion

@@ -1,4 +1,6 @@
+using Authentication.Api.Configurations.Filters;
 using Authentication.Domain.Models.Configurations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Authentication.Api.Configurations.Extensions;
 
