@@ -4,7 +4,7 @@ namespace Authentication.Domain.Entities;
 
 public class Auth : BaseAudit
 {
-    public Auth()
+    private Auth()
     {
     }
 

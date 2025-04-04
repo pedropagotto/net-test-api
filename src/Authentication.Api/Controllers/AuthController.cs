@@ -30,6 +30,8 @@ namespace Authentication.Api.Controllers
                 return BadRequest(query.Errors);
             
             var result = await _authenticationService.Login(query.Value!);
+            if(!result.Success)
+                return BadRequest(result.Errors);
             
             return Ok(LoginResponse.From(result.Value!));
         }

@@ -11,7 +11,11 @@ public class UserRepository(AppDbContext context) : Repository<User>(context), I
 
     public async Task<Auth?> GetByEmailAndPassword(string email, string password)
     {
-        return await context.Authentications.Include(x => x.User)
+        return await context.Authentications.AsNoTracking().Include(x => x.User)
             .FirstOrDefaultAsync(x=> x.Email == email && x.Password == password);;
+    }
+    public async Task<bool> EmailExistsAsync(string email)
+    {
+        return await context.Authentications.AsNoTracking().AnyAsync(x => x.Email == email);
     }
 }
