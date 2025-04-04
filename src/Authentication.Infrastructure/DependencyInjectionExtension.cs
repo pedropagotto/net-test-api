@@ -8,11 +8,11 @@ namespace Authentication.Infrastructure;
 
 public static class DependencyInjectionExtension
 {
-     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
-     {
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-    
-            return services;
-     }
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    {
+        services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+        return services;
+    }
 }

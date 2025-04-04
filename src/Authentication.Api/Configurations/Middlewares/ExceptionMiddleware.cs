@@ -29,11 +29,11 @@ public class ExceptionMiddleware
             {
                 errors = new List<ErrorMessage>
                 {
-                    new (ex.Message)
+                    new(ex.Message)
                 }
             };
 
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+            context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
             context.Response.ContentType = "application/json";
 
             await context.Response.WriteAsync(JsonSerializer.Serialize(response));

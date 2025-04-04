@@ -13,7 +13,7 @@ public class ModelStateFilter : IAsyncActionFilter
     {
         if (context.ModelState.IsValid)
             await next();
-        
+
         var messages = context.ModelState.Values
             .Where(x => x.Errors.Count > 0)
             .SelectMany(x => x.Errors)
@@ -23,7 +23,7 @@ public class ModelStateFilter : IAsyncActionFilter
         {
             Errors = messages
         };
-        
+
         context.Result = new ContentResult
         {
             Content = JsonSerializer.Serialize(response),

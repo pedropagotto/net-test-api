@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Authentication.Infrastructure.Configurations;
 
-public class UserConfigurations: IEntityTypeConfiguration<User>
+public class UserConfigurations : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
@@ -12,7 +12,7 @@ public class UserConfigurations: IEntityTypeConfiguration<User>
 
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
-        
+
         builder.Property(x => x.Name)
             .IsRequired()
             .HasMaxLength(100);
@@ -22,31 +22,31 @@ public class UserConfigurations: IEntityTypeConfiguration<User>
             .HasForeignKey<Auth>(a => a.User.Id)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         builder.Property(x => x.Age)
             .IsRequired(false)
             .HasMaxLength(3);
-        
+
         builder.Property(x => x.Address)
             .IsRequired(false)
             .HasMaxLength(100);
-        
+
         builder.Property(x => x.OtherInfo)
             .IsRequired()
             .HasMaxLength(200);
-        
+
         builder.Property(x => x.Interests)
             .IsRequired()
             .HasMaxLength(200);
-        
+
         builder.Property(x => x.Feelings)
             .IsRequired()
             .HasMaxLength(200);
-        
+
         builder.Property(x => x.ValuesDescription)
             .IsRequired()
             .HasMaxLength(200);
-        
+
         builder.Property(x => x.CreatedAt)
             .IsRequired();
 
@@ -55,7 +55,7 @@ public class UserConfigurations: IEntityTypeConfiguration<User>
 
         builder.Property(x => x.CreatedBy)
             .IsRequired();
-        
+
         builder.Property(x => x.UpdatedBy)
             .IsRequired(false);
     }

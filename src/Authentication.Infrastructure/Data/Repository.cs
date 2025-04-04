@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Authentication.Infrastructure.Data;
 
-public abstract class Repository<T>: IRepository<T> where T : class
+public abstract class Repository<T> : IRepository<T> where T : class
 {
     private readonly DbContext _context;
     protected readonly DbSet<T> DbSet;
@@ -45,8 +45,12 @@ public abstract class Repository<T>: IRepository<T> where T : class
     }
 
     public async Task<T?> GetAsync(int id, CancellationToken cancellationToken = default)
-        => await DbSet.FindAsync(id, cancellationToken);
+    {
+        return await DbSet.FindAsync(id, cancellationToken);
+    }
 
     public async Task<List<T>> GetAllAsync(int page = 0, int pageSize = 25, CancellationToken cancellationToken = default)
-        => await ContextReadonly.Paginate(page,pageSize).ToListAsync(cancellationToken);
+    {
+        return await ContextReadonly.Paginate(page, pageSize).ToListAsync(cancellationToken);
+    }
 }

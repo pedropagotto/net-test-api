@@ -15,7 +15,10 @@ public class Email
         Value = value;
     }
 
-    private bool IsValidEmail(string email) => email.Contains("@");
+    private bool IsValidEmail(string email)
+    {
+        return email.Contains("@");
+    }
 
     public override bool Equals(object obj)
     {
@@ -25,10 +28,22 @@ public class Email
         return Value == other.Value;
     }
 
-    public override int GetHashCode() => Value.GetHashCode();
+    public override int GetHashCode()
+    {
+        return Value.GetHashCode();
+    }
 
-    public static bool operator ==(Email left, Email right) => Equals(left, right);
-    public static bool operator !=(Email left, Email right) => !Equals(left, right);
+    public static bool operator ==(Email left, Email right)
+    {
+        return Equals(left, right);
+    }
+    public static bool operator !=(Email left, Email right)
+    {
+        return !Equals(left, right);
+    }
 
-    public override string ToString() => Value;
+    public override string ToString()
+    {
+        return Value;
+    }
 }

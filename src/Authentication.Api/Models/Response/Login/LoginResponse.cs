@@ -9,8 +9,11 @@ public class LoginResponse
     /// </summary>
     public string Token { get; set; }
 
-    public static LoginResponse From(LoginQueryResult result) => new LoginResponse()
+    public static LoginResponse From(LoginQueryResult result)
     {
-        Token = result.Token,
-    };
+        return new LoginResponse()
+        {
+            Token = result.Token
+        };
+    }
 }

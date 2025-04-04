@@ -14,6 +14,9 @@ public class LoginRequest
     /// </summary>
     /// <example>saudhias@lsasokxc</example>
     public string Password { get; set; }
-    
-    public LoginQuery ToQuery()=> new (Email, Password);
+
+    public LoginQuery ToQuery()
+    {
+        return new LoginQuery(Email, Password);
+    }
 }

@@ -27,8 +27,8 @@ services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 
 var configurations = config.GetSection("Configurations").Get<ConfigurationModel>();
-configurations!.ConnectionString =  builder.Configuration.GetConnectionString("PostgresSQL")
-                                  ?? throw new Exception("ConnectionString not found");
+configurations!.ConnectionString = builder.Configuration.GetConnectionString("PostgresSQL")
+                                   ?? throw new Exception("ConnectionString not found");
 
 services.AddJwtConfig(configurations);
 services.AddApiDi(configurations);
@@ -38,6 +38,7 @@ services.AddDataBaseConfiguration(configurations);
 
 
 #region App
+
 var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -48,4 +49,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
 #endregion

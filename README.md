@@ -6,7 +6,6 @@ Teste técnico para a 4logic
 
 Essa api será basicamente um cadastro e gestão de usuarios conforme descrito no pdf do desafio da 4logic.
 
-
 ## Techs:
 
 - .NET 8 Web Api

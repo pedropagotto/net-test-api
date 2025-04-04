@@ -3,9 +3,11 @@ using Authentication.Domain.ValueObjects;
 
 namespace Authentication.Domain.Entities;
 
-public class Auth: BaseAudit
+public class Auth : BaseAudit
 {
-    private Auth(){}
+    private Auth()
+    {
+    }
 
     public Auth(Email email, string password)
     {
@@ -14,7 +16,7 @@ public class Auth: BaseAudit
     }
     public Email Email { get; private set; }
     public string Password { get; private set; }
-    
+
     public virtual User User { get; private set; } = null!;
 
     public Auth SetEmail(string email)

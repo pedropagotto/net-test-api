@@ -14,19 +14,19 @@ public class Result<TResult>
         Errors = errors;
 
     }
-    
-    public Result(bool success): this(default (TResult), success, new List<ErrorMessage>())
+
+    public Result(bool success) : this(default, success, new List<ErrorMessage>())
     {
-        
+
     }
-    
-    public Result(TResult value,bool success): this(value, success, new List<ErrorMessage>())
+
+    public Result(TResult value, bool success) : this(value, success, new List<ErrorMessage>())
     {
-        
+
     }
-    
+
     [JsonConstructor]
-    public Result(TResult value,bool success, List<ErrorMessage> errors)
+    public Result(TResult value, bool success, List<ErrorMessage> errors)
     {
         Errors = errors;
         Success = success;
@@ -35,7 +35,7 @@ public class Result<TResult>
 
     public Result<TResult> WithErrors(List<ErrorMessage> errors)
     {
-        errors.ForEach(x=> WithError(x));
+        errors.ForEach(x => WithError(x));
         return this;
     }
 
@@ -44,7 +44,7 @@ public class Result<TResult>
         Errors.Add(error);
         return this;
     }
-    
+
     public Result<TResult> WithError(string error)
     {
         Errors.Add(new ErrorMessage(error));
@@ -59,35 +59,41 @@ public class Result : Result<object>
     {
     }
 
-    public Result(object value, bool success, List<ErrorMessage> errorMessages) : base(value,success, errorMessages)
+    public Result(object value, bool success, List<ErrorMessage> errorMessages) : base(value, success, errorMessages)
     {
-        
+
     }
-    
-    public static Result<TResult> Ok<TResult>(TResult value) => new(value, true);
-    public static Result Ok() => new(true);
+
+    public static Result<TResult> Ok<TResult>(TResult value)
+    {
+        return new Result<TResult>(value, true);
+    }
+    public static Result Ok()
+    {
+        return new Result(true);
+    }
 
     public static Result<TResult> Error<TResult>(List<ErrorMessage> errors)
     {
         return new Result<TResult>(false).WithErrors(errors);
     }
-    
+
     public static Result<TResult> Error<TResult>(ErrorMessage error)
     {
         return new Result<TResult>(false).WithError(error);
     }
-    
+
     public static Result<TResult> Error<TResult>(string error)
     {
         return new Result<TResult>(false).WithError(error);
     }
-    
-    
+
+
     public static Result Error(List<ErrorMessage> errors)
     {
         return (Result) new Result(false).WithErrors(errors);
     }
-    
+
     public static Result Error(ErrorMessage error)
     {
         return (Result) new Result(false).WithError(error);
@@ -96,6 +102,6 @@ public class Result : Result<object>
     {
         return (Result) new Result(false).WithError(error);
     }
-    
-    
+
+
 }
