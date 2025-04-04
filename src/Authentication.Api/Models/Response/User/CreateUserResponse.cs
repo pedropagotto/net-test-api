@@ -1,4 +1,4 @@
-namespace Authentication.Api.Models.Response.User.Create;
+namespace Authentication.Api.Models.Response.User;
 
 public class CreateUserResponse
 {

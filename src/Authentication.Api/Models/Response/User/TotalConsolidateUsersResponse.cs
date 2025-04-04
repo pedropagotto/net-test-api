@@ -1,6 +1,6 @@
 using Authentication.Application.User.TotalConsolidateUsers;
 
-namespace Authentication.Api.Models.Response.User.TotalConsolidateUsers;
+namespace Authentication.Api.Models.Response.User;
 
 public class TotalConsolidateUsersResponse
 {

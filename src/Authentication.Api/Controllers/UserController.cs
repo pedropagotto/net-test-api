@@ -1,6 +1,5 @@
 using Authentication.Api.Models.Request.User;
-using Authentication.Api.Models.Response.User.Create;
-using Authentication.Api.Models.Response.User.TotalConsolidateUsers;
+using Authentication.Api.Models.Response.User;
 using Authentication.Application.User;
 using Authentication.Domain.Abstractions;
 using Microsoft.AspNetCore.Authorization;
@@ -63,6 +62,26 @@ namespace Authentication.Api.Controllers
                 return BadRequest(result.Errors);
             
             return Ok(TotalConsolidateUsersResponse.Map(result.Value!));
+        }
+        
+        /// <summary>
+        /// Endpoint for List Users
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns>List consolidated users</returns>
+        [HttpGet("list-users")]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(TotalConsolidateUsersResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ErrorMessage>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(List<ErrorMessage>), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<TotalConsolidateUsersResponse>> Get([FromQuery] ListUserRequest request)
+        {
+            
+            //var result = await _userService.GetTotalConsolidateUsers(year);
+            // if(!result.Success)
+            //     return BadRequest(result.Errors);
+            // TotalConsolidateUsersResponse.Map(result.Value!)
+            return Ok();
         }
     }
 }
