@@ -1,13 +1,9 @@
-using Authentication.Api.Models.Request.Login;
 using Authentication.Api.Models.Request.User;
-using Authentication.Api.Models.Response.Login;
 using Authentication.Api.Models.Response.User.Create;
-using Authentication.Application.Authentication;
+using Authentication.Api.Models.Response.User.TotalConsolidateUsers;
 using Authentication.Application.User;
-using Authentication.Application.User.Create;
 using Authentication.Domain.Abstractions;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Authentication.Api.Controllers
@@ -45,6 +41,28 @@ namespace Authentication.Api.Controllers
                 return BadRequest(result.Errors);
             
             return Ok(CreateUserResponse.Map(result.Value));
+        }
+        
+        /// <summary>
+        /// Endpoint for List total consolidate users
+        /// </summary>
+        /// <param name="year"></param>
+        /// <returns>List consolidated users</returns>
+        [HttpGet("list-total-consolidate-users")]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(TotalConsolidateUsersResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ErrorMessage>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(List<ErrorMessage>), StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<TotalConsolidateUsersResponse>> Get([FromQuery] int year)
+        {
+            if(year <= 0)
+                year = DateTime.Now.Year;
+            
+            var result = await _userService.GetTotalConsolidateUsers(year);
+            if(!result.Success)
+                return BadRequest(result.Errors);
+            
+            return Ok(TotalConsolidateUsersResponse.Map(result.Value!));
         }
     }
 }

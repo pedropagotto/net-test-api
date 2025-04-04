@@ -25,7 +25,7 @@ public class AuthenticationService : IAuthenticationService
         var userLogin = await _userRepository.GetByEmailAndPassword(loginQuery.Email, loginQuery.Password.EncryptPassword());
         
         if (userLogin == null)
-            return Result.Error<LoginQueryResult>("Usuario ou senha invalido");
+            return Result.Error<LoginQueryResult>("O usuário pode estar desativado ou com os dados de login e senha invalidos");
 
         var token = GetJwtToken(userLogin.Email, userLogin.User.Name, userLogin.Id.ToString());
         return Result.Ok(new LoginQueryResult(token));

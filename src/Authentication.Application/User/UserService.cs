@@ -1,4 +1,5 @@
 using Authentication.Application.User.Create;
+using Authentication.Application.User.TotalConsolidateUsers;
 using Authentication.Domain.Abstractions;
 using Authentication.Domain.Enums;
 using Authentication.Domain.Repositories;
@@ -45,5 +46,12 @@ public class UserService: IUserService
         var result = await _userRepository.AddAsync(entity);
         await _unitOfWork.SaveChangesAsync();
         return await Task.FromResult(Result.Ok(result.Id));
+    }
+    public async Task<Result<TotalConsolidateUsersResult>> GetTotalConsolidateUsers(int year)
+    {
+        var totalUsersConsolidated = await _userRepository.GetConsolidatedUsersAsync(year);
+        
+        var items = totalUsersConsolidated.Select(item => new TotalConsolidateUserItem().Map(item)).ToList();
+        return Result.Ok(new TotalConsolidateUsersResult(items));
     }
 }
