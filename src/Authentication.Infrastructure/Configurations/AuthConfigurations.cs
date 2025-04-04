@@ -13,14 +13,10 @@ public class AuthConfigurations : IEntityTypeConfiguration<Auth>
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Id).ValueGeneratedOnAdd();
         builder.HasIndex(x => x.UserId).IsUnique();
-
-        builder.OwnsOne(x => x.Email, email =>
-        {
-            email.Property(e => e.Value)
-                .IsRequired()
-                .HasColumnName("Email")
-                .HasMaxLength(160);
-        });
+        
+        builder.Property(x => x.Email)
+            .IsRequired()
+            .HasMaxLength(160);
 
         builder.Property(x => x.Password)
             .IsRequired()

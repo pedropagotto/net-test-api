@@ -1,16 +1,15 @@
 using Authentication.Domain.Abstractions;
 using Authentication.Domain.Enums;
-using Authentication.Domain.ValueObjects;
 
 namespace Authentication.Domain.Entities;
 
 public class User : BaseAudit, IAggregateRoot
 {
-    private User()
+    public User()
     {
     }
 
-    public User(string name, string email, string password, string otherInfo, string interests, string feelings, string valuesDescription)
+    public User(string name, string otherInfo, string interests, string feelings, string valuesDescription)
     {
         Name = name;
         OtherInfo = otherInfo;
@@ -18,7 +17,6 @@ public class User : BaseAudit, IAggregateRoot
         Feelings = feelings;
         ValuesDescription = valuesDescription;
         SetStatusPending();
-        SetAuthentication(email, password);
     }
     public string Name { get; private set; }
 
@@ -36,12 +34,12 @@ public class User : BaseAudit, IAggregateRoot
 
     public string ValuesDescription { get; private set; }
 
-    public int AuthenticationId { get; private set; }
-    public virtual Auth Authentication { get; private set; }
+    public int AuthenticationId { get;  set; }
+    public virtual Auth Authentication { get;  set; }
 
-    public User SetAuthentication(string email, string password)
+    public User SetAuthentication(string email, string password, int userId)
     {
-        Authentication = new Auth(new Email(email), password);
+        Authentication = new Auth(email, password, userId);
         return this;
     }
     

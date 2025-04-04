@@ -1,4 +1,5 @@
 using Authentication.Domain.Entities;
+using Authentication.Domain.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

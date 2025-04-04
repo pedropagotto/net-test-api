@@ -5,5 +5,7 @@ namespace Authentication.Domain.Repositories;
 
 public interface IUserRepository : IRepository<User>
 {
+    
+    Task<Auth?> GetByEmailAndPassword(string email, string password);
 
 }

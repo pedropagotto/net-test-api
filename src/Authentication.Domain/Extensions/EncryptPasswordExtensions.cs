@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Authentication.Application.Extensions;
+namespace Authentication.Domain.Extensions;
 
 public static class EncryptPasswordExtensions
 {

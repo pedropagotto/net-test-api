@@ -1,28 +1,28 @@
 using Authentication.Domain.Abstractions;
-using Authentication.Domain.ValueObjects;
 
 namespace Authentication.Domain.Entities;
 
 public class Auth : BaseAudit
 {
-    private Auth()
+    public Auth()
     {
     }
 
-    public Auth(Email email, string password)
+    public Auth(string email, string password, int userId)
     {
         Email = email;
         Password = password;
+        UserId = userId;
     }
-    public Email Email { get; private set; }
+    public string Email { get; private set; }
     public string Password { get; private set; }
 
     public int UserId { get; set; }
-    public virtual User User { get; private set; } = null!;
+    public virtual User User { get; set; } = null!;
 
     public Auth SetEmail(string email)
     {
-        Email = new Email(email);
+        Email = email;
         return this;
     }
 

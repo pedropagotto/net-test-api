@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Authentication.Domain.Abstractions;
 using Authentication.Domain.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -52,5 +53,12 @@ public abstract class Repository<T> : IRepository<T> where T : class
     public async Task<List<T>> GetAllAsync(int page = 0, int pageSize = 25, CancellationToken cancellationToken = default)
     {
         return await ContextReadonly.Paginate(page, pageSize).ToListAsync(cancellationToken);
+    }
+    public async Task<List<TSelect>> FiltersAsync<TSelect>(Expression<Func<T, bool>> predicate, Expression<Func<T, TSelect>> mapper, int page = 0, int pageSize = 25, CancellationToken cancellationToken = default)
+    {
+        return await ContextReadonly
+            .Where<T>(predicate)
+            .Select<T, TSelect>(mapper)
+            .ToListAsync<TSelect>();
     }
 }
